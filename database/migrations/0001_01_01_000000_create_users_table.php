@@ -113,9 +113,38 @@ return new class extends Migration
             $table->timestamps();
         });
 
+        Schema::create("cicleEvaluations",function(Blueprint $table){
+            $table->bigIncrements("id");
+            $table->foreignId('companyId')->constrained('companies')->onDelete('cascade');
+            $table->string("name");
+            $table->date("startDate");
+            $table->date("endDate");
+            $table->enum("status",["active","inactive"])->default("inactive");
+            $table->softDeletes();
+            $table->timestamps();
+        });
+
+        Schema::create("cicleEvaluationCompnayQuiz",function(Blueprint $table){
+            $table->bigIncrements("id");
+            $table->foreignId('cicleEvaluationId')->constrained('cicleEvaluations')->onDelete('cascade');
+            $table->foreignId('companyId')->constrained('companies')->onDelete('cascade');
+            $table->foreignId('quizId')->constrained('quizzes')->onDelete('cascade');
+            $table->softDeletes();
+            $table->timestamps();
+        });
+
+        Schema::create("cicleEvaluationUser",function(Blueprint $table){
+            $table->bigIncrements("id");
+            $table->foreignId('cicleEvaluationId')->constrained('cicleEvaluations')->onDelete('cascade');
+            $table->foreignId('userId')->constrained('users')->onDelete('cascade');
+            $table->softDeletes();
+            $table->timestamps();
+        });
+
         Schema::create("responses",function(Blueprint $table){
             $table->bigIncrements("id");
             $table->foreignId('userId')->constrained('users')->onDelete('cascade');
+            $table->foreignId('cicleEvaluationId')->constrained('cicleEvaluations')->onDelete('cascade');
             $table->integer('quizId');
             $table->integer('quizSectionId');
             $table->integer('quizSectionQuestionId');
@@ -164,6 +193,9 @@ return new class extends Migration
         Schema::dropIfExists('responses');
         Schema::dropIfExists('settings');
         Schema::dropIfExists('password_reset_tokens');
+        Schema::dropIfExists('cicleEvaluations');
+        Schema::dropIfExists('cicleEvaluationCompanyQuiz');
+        Schema::dropIfExists('cicleEvaluationUser');
         Schema::dropIfExists('sessions');
     }
 };
