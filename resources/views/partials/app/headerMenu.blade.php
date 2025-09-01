@@ -176,7 +176,7 @@
                 <hr class="dropdown-divider">
             </li>
             <li>
-                <a class="dropdown-item" href="javascript:;">
+                <a class="dropdown-item" href="/users/profile">
                 <div class="d-flex align-items-center">
                     <div class="">
                     <ion-icon name="person-outline"></ion-icon>
