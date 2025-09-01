@@ -8,6 +8,10 @@ import './bootstrap';
 import { createApp } from 'vue';
 import { _api_auth } from './auth';
 
+import { Bootstrap5Pagination } from 'laravel-vue-pagination';
+
+import Swal from 'vue-sweetalert2';
+import 'sweetalert2/dist/sweetalert2.min.css';
 /**
  * Next, we will create a fresh Vue application instance. You may then begin
  * registering components with the application instance so they are ready
@@ -16,8 +20,14 @@ import { _api_auth } from './auth';
 
 const app = createApp({});
 
+app.use(Swal);
+app.component('Bootstrap5Pagination', Bootstrap5Pagination);
+
 import ExampleComponent from './components/ExampleComponent.vue';
 app.component('example-component', ExampleComponent);
+
+import UsersListCompanyComponent from './components/users/UsersListCompanyComponent.vue';
+app.component('users-list-company-component', UsersListCompanyComponent);
 
 /**
  * The following block of code may be used to automatically register your
@@ -36,5 +46,6 @@ app.component('example-component', ExampleComponent);
  * an "id" attribute of "app". This element is included with the "auth"
  * scaffolding. Otherwise, you will need to add an element yourself.
  */
+app.config.globalProperties.$apiAuth = _api_auth;
 
 app.mount('#app');

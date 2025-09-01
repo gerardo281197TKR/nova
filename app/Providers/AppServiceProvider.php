@@ -20,9 +20,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Passport::ignoreRoutes();
+        // Configuración de Passport para Laravel 12
         Passport::tokensExpireIn(now()->addDays(15));
         Passport::refreshTokensExpireIn(now()->addDays(30));
         Passport::personalAccessTokensExpireIn(now()->addMonths(6));
+        
+        // Configuración básica de Passport para Laravel 12
+        // Los modelos se configuran automáticamente en las versiones más recientes
     }
 }

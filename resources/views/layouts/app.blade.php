@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
 
 <head>
 @include("partials.app.header")
@@ -7,7 +7,7 @@
 
 <body>
   <!--start wrapper-->
-  <div class="wrapper">
+  <div class="wrapper" id="app">
     @include("partials.app.sidebar")
     @include("partials.app.headerMenu")
     <!-- start page content wrapper-->

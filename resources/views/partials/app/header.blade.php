@@ -22,5 +22,9 @@
   <link href="/template/assets/css/dark-theme.css" rel="stylesheet" />
   <link href="/template/assets/css/semi-dark.css" rel="stylesheet" />
   <link href="/template/assets/css/header-colors.css" rel="stylesheet" />
+  
+  <link rel="icon" type="image/x-icon" href="/template/assets/images/logo.jpg">
+
 
   <title>NOVA - Capacitación</title>
+  @vite(['resources/js/app.js'])

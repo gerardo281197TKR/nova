@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" class="light-theme">
+<html lang="es" class="light-theme">
 
 <head>
 @include("partials.guest.header")
