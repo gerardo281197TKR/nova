@@ -15,7 +15,10 @@ return new class extends Migration
             $table->bigIncrements("id");
 
             $table->string("name");
+            $table->string("description")->nullable();
             $table->double("price",10);
+            $table->integer("cicleEvaluationsAvailables");
+            $table->integer("cicleEvaluationsUsersAvailables");
 
             $table->softDeletes();
             $table->timestamps();
@@ -41,6 +44,15 @@ return new class extends Migration
             $table->integer("employees")->default(1);
             $table->enum("status",["active","inactive","suspended"])->default("suspended");
 
+            $table->softDeletes();
+            $table->timestamps();
+        });
+
+        Schema::create("companySettings",function(Blueprint $table){
+            $table->bigIncrements("id");
+            $table->foreignId('companyId')->constrained('companies')->onDelete('cascade');
+            $table->string("key");
+            $table->string("value");
             $table->softDeletes();
             $table->timestamps();
         });
@@ -184,6 +196,8 @@ return new class extends Migration
     {
         Schema::dropIfExists('plans');
         Schema::dropIfExists('roles');
+        Schema::dropIfExists('companies');
+        Schema::dropIfExists('companySettings');
         Schema::dropIfExists('payments');
         Schema::dropIfExists('users');
         Schema::dropIfExists('quizzes');

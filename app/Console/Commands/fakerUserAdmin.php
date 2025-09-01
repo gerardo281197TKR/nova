@@ -55,6 +55,7 @@ class fakerUserAdmin extends Command
         $role_id->save();
 
         $user                    = new User();
+        $user->companyId         = 1;
         $user->roleId            = 1;
         $user->firstName         = 'luevanos';
         $user->lastName          = 'jimenez';
@@ -63,15 +64,5 @@ class fakerUserAdmin extends Command
         $user->password          =  Hash::make('admin2025');
         $user->uuid              =  $originalUUid;
         $user->save();        
-
-        $settings = new Setting();
-        $settings->key = 'active_register';
-        $settings->value = false;
-        $settings->save();        
-
-        $settings = new Setting();
-        $settings->key = 'redirect_to';
-        $settings->value = 'https://google.com';
-        $settings->save();
     }
 }

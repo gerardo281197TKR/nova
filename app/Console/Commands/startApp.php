@@ -29,7 +29,10 @@ class startApp extends Command
     {
         Artisan::call('migrate:fresh');
         $this->info('migraciones realizadas');
+        Artisan::call('app:faker-plans-settings');
+        Artisan::call('app:faker-roles');
         Artisan::call('faker:useradmin');
+        Artisan::call('app:faker-first-quiz-and-sections');
         $this->info('faker data instalada');
         $this->info('Da enter para terminar');
         Artisan::call('passport:client', [
