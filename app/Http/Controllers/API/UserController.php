@@ -63,4 +63,27 @@ class UserController extends Controller
             'user' => $request->user()
         ]);
     }
+
+    public function show(Request $request)
+    {
+        $user = auth()->user();
+        $search = (string) $request->input("searchv","");
+
+        $users = User::where("companyId",$user->companyId)
+        ->whereNotIn("id",[$user->id])
+        ->when($search, function($query) use ($search) {
+            $query->where(function($q) use ($search) {
+                $q->where("firstName","LIKE","%".$search."%")
+                  ->orWhere("lastName","LIKE","%".$search."%")
+                  ->orWhere("email","LIKE","%".$search."%");
+            });
+        })
+        ->paginate(20);
+
+        return responseApi(array(
+            "status"  => true,
+            "message" => null,
+            "users"   => $users
+        ));
+    }
 }

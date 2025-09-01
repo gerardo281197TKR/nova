@@ -79,12 +79,9 @@ class LoginController extends Controller
         $user = User::first();
         
         if (!$user) {
-            // Si no hay usuarios, crear uno por defecto
-            $user = User::create([
-                'name' => 'System User',
-                'email' => 'system@' . config('app.domain', 'localhost'),
-                'password' => Hash::make(Str::random(32)),
-            ]);
+            return response()->json([
+                'message' => 'No user found'
+            ], 404);
         }
 
         // Crear nuevo token de acceso personal

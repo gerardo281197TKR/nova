@@ -1,42 +1,63 @@
 <template>
-    <div class="card">
-        <div class="card-body">
-        <div class="d-flex align-items-center">
-            <h5 class="mb-0">
-                Lista de Usuarios
-            </h5>
-            <form class="ms-auto position-relative">
-                <div class="position-absolute top-50 translate-middle-y search-icon px-3"><ion-icon name="search-sharp"></ion-icon></div>
-                <input class="form-control ps-5" type="text" placeholder="Buscar..">
-            </form>
+  <div class="card">
+    <div class="card-body">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h5 class="mb-0">Lista de Usuarios</h5>
+
+        <!-- Buscador a la derecha -->
+        <form class="position-relative ms-3" @submit.prevent="get_data">
+          <div class="position-absolute top-50 translate-middle-y search-icon px-3">
+            <ion-icon name="search-sharp"></ion-icon>
+          </div>
+          <input 
+            class="form-control ps-5" 
+            type="text" 
+            placeholder="Buscar.." 
+            v-model="filters.searchv"
+            @keyup.enter="get_data" 
+          />
+        </form>
+      </div>
+
+      <!-- Paginado a la izquierda -->
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <div>
+          <Bootstrap5Pagination 
+            :data="users" 
+            @pagination-change-page="get_data" 
+          />
         </div>
-        <div class="table-responsive mt-3">
-            <table class="table align-middle">
-            <thead class="table-secondary">
-                <tr>
-                <th>#</th>
-                <th>Nombre</th>
-                <th>Apellidos</th>
-                <th>Correo electrónico</th>
-                <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>
-                        b
-                    </td>
-                    <td>89 Chicago UK</td>
-                    <td>Chicago</td>
-                    <td>8574201</td>
-                </tr>
-            </tbody>
-            </table>
-        </div>
-        </div>
+        <!-- Opcional: espacio vacío a la derecha para alinear -->
+        <div></div>
+      </div>
+
+      <!-- Tabla -->
+      <div class="table-responsive">
+        <table class="table align-middle">
+          <thead class="table-secondary">
+            <tr>
+              <th class="text-center">#</th>
+              <th>Nombre</th>
+              <th>Apellidos</th>
+              <th>Correo electrónico</th>
+              <th class="text-center">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="(user, index) in users.data" :key="user.id">
+              <td class="text-center">{{ index + 1 }}</td>
+              <td>{{ user.firstName }}</td>
+              <td>{{ user.lastName }}</td>
+              <td>{{ user.email }}</td>
+              <td class="text-center">8574201</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
+  </div>
 </template>
+
 <script>
 export default {
   name: 'usersListCompanyComponent',
