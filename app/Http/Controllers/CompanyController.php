@@ -8,7 +8,7 @@ class CompanyController extends Controller
 {
     public function plan(Request $request) {
         $breadcrumbs = [
-            ['title' => 'Dashboard', 'url' => "/", 'icon' => 'home-outline'],
+            ['title' => 'Dashboard', 'url' => "/home", 'icon' => 'home-outline'],
             ['title' => 'Empresa', 'url' => "/company/plan", 'icon' => 'business-outline'], // página actual
         ];
 
@@ -17,7 +17,7 @@ class CompanyController extends Controller
 
     public function payments(Request $request) {
         $breadcrumbs = [
-            ['title' => 'Dashboard', 'url' => "/", 'icon' => 'home-outline'],
+            ['title' => 'Dashboard', 'url' => "/home", 'icon' => 'home-outline'],
             ['title' => 'Empresa', 'url' => "/company/payments", 'icon' => 'business-outline'], // página actual
         ];
 

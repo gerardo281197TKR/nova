@@ -1,4 +1,5 @@
 <!--start breadcrumb-->
+@if(isset($breadcrumbs) && is_array($breadcrumbs) && count($breadcrumbs) > 0)
 <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
     <div class="breadcrumb-title pe-3">{{ $breadcrumbs[0]['title'] }}</div>
     <div class="ps-3">
@@ -26,4 +27,5 @@
         </nav>
     </div>
 </div>
+@endif
 <!--end breadcrumb-->

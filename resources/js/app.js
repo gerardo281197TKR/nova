@@ -29,6 +29,9 @@ app.component('example-component', ExampleComponent);
 import UsersListCompanyComponent from './components/users/UsersListCompanyComponent.vue';
 app.component('users-list-company-component', UsersListCompanyComponent);
 
+import CreateUserComponent from './components/users/CreateUserComponent.vue';
+app.component('create-user-component', CreateUserComponent);
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue

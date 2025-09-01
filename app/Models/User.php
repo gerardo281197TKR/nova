@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Str;
 
 class User extends Authenticatable
 {
@@ -20,7 +21,11 @@ class User extends Authenticatable
      * @var list<string>
      */
     protected $fillable = [
-        'name',
+        'roleId',
+        'companyId',
+        'uuid',
+        'firstName',
+        'lastName',
         'email',
         'password',
     ];
@@ -46,5 +51,51 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    /**
+     * Boot function to set UUID when creating
+     */
+    protected static function boot()
+    {
+        parent::boot();
+        
+        static::creating(function ($model) {
+            if (empty($model->uuid)) {
+                $model->uuid = Str::uuid()->toString();
+            }
+        });
+    }
+
+    /**
+     * Get the user's full name
+     */
+    public function getFullNameAttribute()
+    {
+        return $this->firstName . ' ' . $this->lastName;
+    }
+
+    /**
+     * Relationship with Role
+     */
+    public function role()
+    {
+        return $this->belongsTo(Role::class, 'roleId');
+    }
+
+    /**
+     * Relationship with Company
+     */
+    public function company()
+    {
+        return $this->belongsTo(Company::class, 'companyId');
+    }
+
+    /**
+     * Relationship with CicleEvaluationUser
+     */
+    public function cicleEvaluations()
+    {
+        return $this->hasMany(CicleEvaluationUser::class, 'userId');
     }
 }

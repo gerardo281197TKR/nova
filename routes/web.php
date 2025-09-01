@@ -19,9 +19,11 @@ Route::middleware("auth")->group(function () {
 
     Route::prefix("/users")->group(function () {
         Route::controller(UserController::class)->group(function(){
-            Route::get("/new", "new");
-            Route::get("/list", "list");
-            Route::get("/profile", "profile");
+            Route::get("/new", "new")->name('users.new');
+            Route::post("/store", "store")->name('users.store');
+            Route::get("/list", "list")->name('users.list');
+            Route::get("/profile", "profile")->name('users.profile');
+            Route::get("/company-info", "getCompanyUsersInfo")->name('users.company-info');
         });
     });
 
@@ -34,7 +36,7 @@ Route::middleware("auth")->group(function () {
 
     Route::prefix("/company")->group(function () {
         Route::controller(CompanyController::class)->group(function(){
-            Route::get("/plan", "plan");
+            Route::get("/plan", "plan")->name('company.plan');
             Route::get("/payments", "payments");
         });
     });

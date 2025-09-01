@@ -8,7 +8,7 @@ class CiclesController extends Controller
 {
     public function new(Request $request) {
         $breadcrumbs = [
-            ['title' => 'Dashboard', 'url' => "/", 'icon' => 'home-outline'],
+            ['title' => 'Dashboard', 'url' => "/home", 'icon' => 'home-outline'],
             ['title' => 'Ciclos', 'url' => "/cicles/list", 'icon' => 'layers-outline'],
             ['title' => 'Nuevo', 'url' => '/cicles/new', 'icon' => 'add-circle-outline'] // página actual
         ];
@@ -18,7 +18,7 @@ class CiclesController extends Controller
 
     public function list(Request $request) {
         $breadcrumbs = [
-            ['title' => 'Dashboard', 'url' => "/", 'icon' => 'home-outline'],
+            ['title' => 'Dashboard', 'url' => "/home", 'icon' => 'home-outline'],
             ['title' => 'Ciclos', 'url' => "/cicles/list", 'icon' => 'layers-outline'], // página actual
         ];
 
