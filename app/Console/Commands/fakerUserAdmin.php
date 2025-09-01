@@ -59,7 +59,7 @@ class fakerUserAdmin extends Command
         $user->roleId            = 1;
         $user->firstName         = 'luevanos';
         $user->lastName          = 'jimenez';
-        $user->email             = 'admin@nova.com';
+        $user->email             = 'admin@novacapacitacion.com';
         $user->email_verified_at =  Carbon::now();
         $user->password          =  Hash::make('admin2025');
         $user->uuid              =  $originalUUid;
